@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=jupyterhub/jupyterhub:latest
+ARG BASE_IMAGE=jupyterhub/k8s-hub:0.11.1
 FROM "${BASE_IMAGE}"
 
 ENV PATH="/home/${NB_USER}/.local/bin:${PATH}"

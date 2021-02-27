@@ -28,7 +28,7 @@ Use the dev version to quickly test different configuration options. Use the def
 
 ## Build, Launch, Test
 
-### Dev Setup
+### Define Environment Variables
 
 1. Copy `.env.example` to `.env`
 2. Update values in `.env`. Sensible defaults are provided to enable basic launches.

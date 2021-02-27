@@ -5,9 +5,6 @@ RUN apt-get update \
  && apt-get upgrade -y \
  && apt-get install unzip -y
 
-# app folder
-RUN mkdir /illumidesk
-
 WORKDIR /tmp
 
 # install packages with pip. makes sure pip is up to date.
@@ -18,10 +15,16 @@ RUN python -m pip install --upgrade pip \
 # illumidesk package release
 ARG ILLUMIDESK_VERSION=1.1.1
 
+# Application directory
+ENV APP_DIR=/illumidesk/app
+
+# app folder
+RUN mkdir -p "${APP_DIR}"
+
 # fetch and unpack illumidesk package
 RUN wget "https://github.com/IllumiDesk/illumidesk/archive/v${ILLUMIDESK_VERSION}.zip" \
- && unzip "https://github.com/IllumiDesk/illumidesk/archive/v${ILLUMIDESK_VERSION}.zip"
-COPY "/tmp/illumidesk-${ILLUMIDESK_VERSION}/src/grader-setup-service/app" /illumidesk/app/
+ && unzip "/tmp/v${ILLUMIDESK_VERSION}.zip"
+RUN cp -r "/tmp/illumidesk-${ILLUMIDESK_VERSION}/src/grader-service/grader-service/." "${APP_DIR}/."
 
 WORKDIR /illumidesk
 
